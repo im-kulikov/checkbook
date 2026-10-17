@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Выбор категории</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<header class="ck-appbar"><a class="ck-icon-btn" href="Review.dc.html" aria-label="Назад"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a><h1 class="ck-appbar__title">Категория</h1></header><div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;gap:8px"><label class="ck-field"><span class="ck-sr">Найти категорию</span><span class="ck-field__box"><span style="color:var(--text-2);display:flex"><svg class="ck-icon ck-icon--s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span><input class="ck-field__input" placeholder="Найти категорию"></span></label><div class="ck-section" style="padding:4px 4px 0"><span>Подсказки</span></div><button class="ck-sug" role="radio" aria-checked="true"><span class="ck-radio" aria-hidden="true"></span><span><span class="ck-sug__title"><span class="ck-path">Стройка<span class="ck-path__sep" aria-hidden="true">›</span>Электрика</span></span><span class="ck-sug__why">по получателю</span></span></button><button class="ck-sug" role="radio" aria-checked="false"><span class="ck-radio" aria-hidden="true"></span><span><span class="ck-sug__title"><span class="ck-path">Стройка<span class="ck-path__sep" aria-hidden="true">›</span>Отделка</span></span><span class="ck-sug__why">последняя</span></span></button><button class="ck-sug" role="radio" aria-checked="false"><span class="ck-radio" aria-hidden="true"></span><span><span class="ck-sug__title">Продукты</span><span class="ck-sug__why">частая</span></span></button><div class="ck-section" style="padding:4px 4px 0"><span>Все категории</span></div><div class="ck-list" role="tree" style=""><button class="ck-tree ck-tree--root" role="treeitem" aria-level="1" aria-expanded="true" style="padding-left:16px"><span class="ck-tree__top"><svg class="ck-icon ck-tree__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><span class="ck-tree__name">Стройка</span></span></button><button class="ck-tree" role="treeitem" aria-level="2" style="padding-left:64px"><span class="ck-tree__top"><span class="ck-tree__name">Отделка</span></span></button><div class="ck-tree" role="treeitem" aria-level="2" aria-expanded="true" aria-selected="true" style="padding-left:40px"><span class="ck-tree__top"><svg class="ck-icon ck-tree__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><span class="ck-tree__name">Электрика</span><button class="ck-btn ck-btn--secondary" style="min-height:32px;padding:0 10px;font-size:13px">Выбрать этот уровень</button></span></div><button class="ck-tree" role="treeitem" aria-level="3" style="padding-left:88px"><span class="ck-tree__top"><span class="ck-tree__name">Кабель и автоматы</span></span></button><button class="ck-tree" role="treeitem" aria-level="3" style="padding-left:88px"><span class="ck-tree__top"><span class="ck-tree__name">Освещение</span></span></button><button class="ck-tree" role="treeitem" aria-level="2" style="padding-left:64px"><span class="ck-tree__top"><span class="ck-tree__name">Сантехника</span></span></button><button class="ck-tree" role="treeitem" aria-level="2" style="padding-left:64px"><span class="ck-tree__top"><span class="ck-tree__name">Черновые работы</span></span></button><button class="ck-tree" role="treeitem" aria-level="2" style="padding-left:64px"><span class="ck-tree__top"><span class="ck-tree__name">Прочее</span></span></button><button class="ck-tree ck-tree--root" role="treeitem" aria-level="1" style="padding-left:40px"><span class="ck-tree__top"><span class="ck-tree__name">Продукты</span></span></button><button class="ck-tree ck-tree--root" role="treeitem" aria-level="1" style="padding-left:40px"><span class="ck-tree__top"><span class="ck-tree__name">Дом</span></span></button><button class="ck-row" style="color:var(--accent);font-weight:600;min-height:48px"><svg class="ck-icon ck-icon--s" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Новая категория</button></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>

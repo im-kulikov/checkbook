@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Обновите приложение</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:0 24px;text-align:center"><svg style="width:220px;height:auto;flex:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" fill="none" aria-hidden="true" focusable="false"><circle cx="80" cy="60" r="46" fill="var(--accent-weak, #E2EFEA)"/><rect x="52" y="30" width="56" height="56" rx="14" fill="var(--accent, #1D6B57)"/><path d="M65.96 46.04Q73.76 46.04 78.44 48.12V69.44L75.32 66.84 72.2 68.66 69.08 66.58 65.96 68.4ZM94.04 46.04Q86.24 46.04 81.56 48.12V69.44L84.68 66.84 87.8 68.66 90.92 66.58 94.04 68.4Z" fill="var(--on-accent, #FFFFFF)"/><circle cx="106" cy="32" r="15" fill="var(--bg, #F4F5F2)"/><circle cx="106" cy="32" r="13" fill="var(--surface, #FFFFFF)" stroke="var(--text-2, #5B6168)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M99.89 29.78A6.5 6.5 0 0 1 111.63 28.75M111.63 28.75l-2.77 -1.6M111.63 28.75l0 -3.2M112.11 34.22A6.5 6.5 0 0 1 100.37 35.25M100.37 35.25l2.77 1.6M100.37 35.25l0 3.2" stroke="var(--accent, #1D6B57)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 38Q44.72 41.28 48 42Q44.72 42.72 44 46Q43.28 42.72 40 42Q43.28 41.28 44 38Z" fill="var(--accent, #1D6B57)"/><path d="M118 77Q118.54 79.46 121 80Q118.54 80.54 118 83Q117.46 80.54 115 80Q117.46 79.46 118 77Z" fill="var(--accent, #1D6B57)"/><path d="M50 89.5Q50.45 91.55 52.5 92Q50.45 92.45 50 94.5Q49.55 92.45 47.5 92Q49.55 91.55 50 89.5Z" fill="var(--text-2, #5B6168)"/></svg><h1 style="margin:0;font:600 24px/32px 'Golos Text'">Обновите приложение</h1><p style="margin:0;font-size:15px;line-height:22px;color:var(--text-2)">Данные семьи записаны более новой версией Чекбука. Обновите приложение, чтобы продолжить</p><p style="margin:0;font:400 13px/18px 'Golos Text',sans-serif;color:var(--text-2);max-width:300px">Очередь отправки цела. Запись в репозиторий закрыта, пока вы не обновитесь.</p></div><div style="padding:0 16px 28px;flex:none"><button class="ck-btn ck-btn--primary ck-btn--block ck-btn--l"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>Обновить</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>

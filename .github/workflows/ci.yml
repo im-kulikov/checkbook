@@ -1,0 +1,75 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# Actions are pinned by commit SHA (NFR-S7); the tag is in the comment. Resolve new tags with
+#   git ls-remote --tags https://github.com/actions/<name>
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0 # gitleaks scans every commit, not only the last one
+          persist-credentials: false
+      # Secret scan with the pinned gitleaks release binary.
+      # Pinned version + sha256 of gitleaks_<v>_linux_x64.tar.gz copied from the release's gitleaks_<v>_checksums.txt
+      # (v8.30.1, tag 2026-03-12). To upgrade: take the new line from that file; never drop the checksum check.
+      # NFR-S9, GIT18: a wrong checksum fails before gitleaks runs; a found secret fails the job.
+      - name: Secret scan (gitleaks, pinned binary)
+        env:
+          GITLEAKS_VERSION: 8.30.1
+          GITLEAKS_SHA256: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+        run: |
+          tgz="$RUNNER_TEMP/gitleaks.tar.gz"
+          curl -fsSL --retry 3 -o "$tgz" \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          echo "${GITLEAKS_SHA256}  $tgz" | sha256sum -c -
+          tar -xzf "$tgz" -C "$RUNNER_TEMP" gitleaks
+          echo "$RUNNER_TEMP" >>"$GITHUB_PATH"
+          "$RUNNER_TEMP/gitleaks" git --config .gitleaks.toml --redact --no-banner --exit-code 1 .
+      # Before the app exists at the repository root, the app checks are skipped.
+      - id: app
+        run: if [ -f package-lock.json ]; then echo "present=true" >>"$GITHUB_OUTPUT"; else echo "::notice::no package-lock.json at the repo root yet, app checks skipped"; fi
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: ${{ steps.app.outputs.present == 'true' && 'npm' || '' }}
+      - name: Script tests (svg-to-tsx.mjs)
+        run: node --test 'scripts/*.test.mjs'
+      - name: Gateway tests (node:test, no dependencies)
+        if: hashFiles('gateway/test/*.mjs') != ''
+        run: node --test gateway/test
+      - if: steps.app.outputs.present == 'true'
+        run: npm ci --ignore-scripts
+      - if: steps.app.outputs.present == 'true'
+        run: npm run typecheck
+      - if: steps.app.outputs.present == 'true'
+        run: npm run lint
+      - if: steps.app.outputs.present == 'true'
+        run: npm test -- --coverage
+      - if: steps.app.outputs.present == 'true'
+        env:
+          VITE_GATEWAY_ORIGIN: ${{ secrets.CHECKBOOK_GATEWAY_ORIGIN }} # optional AI gateway origin; empty => no AI, no host in the CSP
+        run: npm run build # __APP_VERSION__ = "version" from package.json
+      - name: Icons, splash screens, frozen manifest fields (scripts/check-assets.mjs)
+        if: steps.app.outputs.present == 'true' && hashFiles('scripts/check-assets.mjs') != ''
+        run: node scripts/check-assets.mjs dist
+      - if: steps.app.outputs.present == 'true'
+        run: npx playwright install --with-deps chromium webkit
+      - if: steps.app.outputs.present == 'true'
+        run: npm run test:e2e
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: ${{ !cancelled() && steps.app.outputs.present == 'true' }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
+          if-no-files-found: ignore

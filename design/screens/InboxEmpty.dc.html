@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Входящие пусто</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<header class="ck-appbar"><h1 class="ck-appbar__title ck-appbar__title--root">Входящие</h1></header><div class="ck-empty" style="flex:none;padding-top:40px"><svg style="width:200px;height:auto;flex:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" fill="none" aria-hidden="true" focusable="false"><circle cx="80" cy="60" r="46" fill="var(--accent-weak, #E2EFEA)"/><path d="M42 72 51 52H109L118 72V88A6 6 0 0 1 112 94H48A6 6 0 0 1 42 88Z" fill="var(--surface, #FFFFFF)" stroke="var(--text-2, #5B6168)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M42 72H62L67 80H93L98 72H118" stroke="var(--text-2, #5B6168)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="40" r="15" fill="var(--bg, #F4F5F2)"/><circle cx="80" cy="40" r="13" fill="var(--accent, #1D6B57)"/><path d="M74 40.5l4.2 4.2 7.8-8.4" stroke="var(--on-accent, #FFFFFF)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M112 29Q112.9 33.1 117 34Q112.9 34.9 112 39Q111.1 34.9 107 34Q111.1 33.1 112 29Z" fill="var(--accent, #1D6B57)"/><path d="M48 40.5Q48.63 43.37 51.5 44Q48.63 44.63 48 47.5Q47.37 44.63 44.5 44Q47.37 43.37 48 40.5Z" fill="var(--accent, #1D6B57)"/><path d="M121 47.5Q121.45 49.55 123.5 50Q121.45 50.45 121 52.5Q120.55 50.45 118.5 50Q120.55 49.55 121 47.5Z" fill="var(--accent, #1D6B57)"/></svg><span class="ck-empty__title">Всё разобрано</span></div><div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;padding-top:8px"><div class="ck-list" style=""><div class="ck-row"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg><span class="ck-row__main"><span class="ck-row__title">Android</span><span class="ck-row__meta">Поделиться → Чекбук</span></span></div><div class="ck-row"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span class="ck-row__main"><span class="ck-row__title">iPhone</span><span class="ck-row__meta">Нажмите +</span></span></div></div></div><nav class="ck-tabbar" aria-label="Основная навигация" style="flex:none"><a class="ck-tab" href="Main.dc.html"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>Обзор</a><a class="ck-tab" href="Operations.dc.html"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Операции</a><a class="ck-tab-add" href="Add.dc.html" aria-label="Добавить"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></a><a class="ck-tab" href="Inbox.dc.html" aria-current="page"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>Входящие</a><a class="ck-tab" href="More.dc.html"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg>Ещё</a></nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>

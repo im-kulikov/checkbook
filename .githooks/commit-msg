@@ -1,0 +1,32 @@
+#!/bin/sh
+# Refuses a commit message that breaks the text rule (extended regex in COMMIT_DENY_PATTERN, case-insensitive),
+# a commit by anyone but the maintainer (first entry of .github/allowed_signers) or a commit with signing off.
+# Trailer, "generated with/by" and link lines that match the rule are dropped first; any other match refuses the commit.
+msg="$1"
+DENY="$(printf '%s' "${COMMIT_DENY_PATTERN:-}" | tr '[:upper:]' '[:lower:]')"
+OWNER="$(awk '!/^[[:space:]]*#/ && NF {print $1; exit}' .github/allowed_signers 2>/dev/null)"
+SETUP="bash ~/checkbook-dev/scripts/session-setup.sh"
+
+fail() { echo "commit-msg: REJECTED: $*" >&2; exit 1; }
+
+[ -n "$DENY" ] || fail "COMMIT_DENY_PATTERN is not set in this environment; ask the maintainer"
+[ -n "$OWNER" ] || fail ".github/allowed_signers has no entry"
+case "$(git var GIT_AUTHOR_IDENT)" in *"<$OWNER>"*) ;; *) fail "author is not <$OWNER>; run: $SETUP" ;; esac
+case "$(git var GIT_COMMITTER_IDENT)" in *"<$OWNER>"*) ;; *) fail "committer is not <$OWNER>; run: $SETUP" ;; esac
+[ "$(git config --get commit.gpgsign)" = "true" ] || fail "commit.gpgsign is not true; run: $SETUP"
+[ "$(git config --get gpg.ssh.program)" != "/tmp/code-sign" ] || fail "platform signing shim is active; run: $SETUP"
+
+tmp="$msg.policy.$$"
+awk -v deny="$DENY" '{
+  l = tolower($0)
+  if ((l ~ /^[ \t]*[a-z0-9-]+:[ \t]/ || l ~ /generated (with|by)/ || l ~ /https?:\/\//) && l ~ deny) next
+  print
+}' "$msg" >"$tmp" && cat "$tmp" >"$msg"
+rm -f "$tmp"
+
+if grep -v '^#' "$msg" | grep -Eiq -- "$DENY"; then
+  grep -v '^#' "$msg" | grep -Ein -- "$DENY" >&2
+  fail "the message breaks the text rule (COMMIT_DENY_PATTERN). Rewrite it without those words."
+fi
+grep -v '^#' "$msg" | grep -q '[^[:space:]]' || fail "message is empty after removing attribution lines"
+exit 0

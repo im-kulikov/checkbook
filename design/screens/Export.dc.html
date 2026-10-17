@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Экспорт</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<header class="ck-appbar"><a class="ck-icon-btn" href="Settings.dc.html" aria-label="Назад"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a><h1 class="ck-appbar__title">Экспорт</h1></header><div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;gap:14px;padding-top:4px"><div class="ck-banner ck-banner--warning"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Не отправлено: 2 — сначала синхронизировать<br><a class="ck-banner__action" href="#" style="display:inline-block;margin:6px 0 0">Синхронизировать</a></span></div><div class="ck-list" style="padding:14px 16px;display:flex;flex-direction:column;gap:2px"><strong style="font-size:17px;line-height:24px">Стройка · всё время</strong><span class="ck-num" style="font-size:14px;color:var(--text-2)">412 операций · 86 чеков</span></div><div class="ck-list" style=""><a class="ck-row" href="#"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="ck-row__main"><span class="ck-row__title">Ветка</span></span><span class="ck-row__end"><span class="ck-row__value ">Стройка</span></span><svg class="ck-icon ck-icon--s ck-row__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a><a class="ck-row" href="#"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span class="ck-row__main"><span class="ck-row__title">Период</span></span><span class="ck-row__end"><span class="ck-row__value ">Всё время</span></span><svg class="ck-icon ck-icon--s ck-row__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a></div><div style="display:flex;flex-direction:column;gap:6px"><button class="ck-btn ck-btn--primary ck-btn--block ck-btn--l"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>CSV</button><p style="margin:0;font:400 13px/18px 'Golos Text',sans-serif;color:var(--text-2);">Таблица, UTF-8 с BOM, разделитель «;»</p></div><div style="display:flex;flex-direction:column;gap:6px"><button class="ck-btn ck-btn--secondary ck-btn--block ck-btn--l"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>ZIP с чеками</button><p style="margin:0;font:400 13px/18px 'Golos Text',sans-serif;color:var(--text-2);">CSV, JSON операций и файлы чеков, ≈ 74 МБ</p></div><div class="ck-banner ck-banner--info"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>Формата Excel нет: CSV открывается в Excel.</span></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>

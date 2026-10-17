@@ -1,0 +1,42 @@
+#!/bin/sh
+# Refuses to push commits that are not signed and authored by the maintainer (first entry of .github/allowed_signers),
+# that break the text rule (COMMIT_DENY_PATTERN, also for branch names and annotated-tag messages), that contain a
+# secret (gitleaks, when installed), or that update main/master. Needs gpg.ssh.allowedSignersFile
+# (locally: git config gpg.ssh.allowedSignersFile .github/allowed_signers).
+OWNER="$(awk '!/^[[:space:]]*#/ && NF {print $1; exit}' .github/allowed_signers 2>/dev/null)"
+BAD="${COMMIT_DENY_PATTERN:-}"
+[ -n "$BAD" ] || { echo "pre-push: COMMIT_DENY_PATTERN is not set in this environment; ask the maintainer" >&2; exit 1; }
+[ -n "$OWNER" ] || { echo "pre-push: .github/allowed_signers has no entry" >&2; exit 1; }
+remote="$1"
+rc=0
+GL="$(command -v gitleaks 2>/dev/null || true)"
+[ -n "$GL" ] || { [ -x "$HOME/.local/gitleaks/gitleaks" ] && GL="$HOME/.local/gitleaks/gitleaks"; }
+
+while read -r _ lsha rref rsha; do
+  case "$lsha" in *[!0]*) ;; *) continue ;; esac # branch deletion
+  case "$rref" in refs/heads/main|refs/heads/master) echo "pre-push: never push to '$rref'; push a feature branch and open a PR" >&2; rc=1; continue ;; esac
+  printf '%s\n' "$rref" | grep -Eiq -- "$BAD" && { echo "pre-push: ref name '$rref' breaks the text rule" >&2; rc=1; }
+  # Annotated tag: its message (without the signature block) is public text too.
+  if [ "$(git cat-file -t "$lsha" 2>/dev/null)" = tag ]; then
+    git cat-file tag "$lsha" | sed '/^-----BEGIN/,$d' | grep -Eiq -- "$BAD" && { echo "pre-push: tag message of '$rref' breaks the text rule" >&2; rc=1; }
+  fi
+  case "$rsha" in
+    *[!0]*) range="$rsha..$lsha" ;;
+    *) range="$lsha --not --remotes=$remote" ;; # new branch: commits not on the remote yet
+  esac
+  # shellcheck disable=SC2086
+  for c in $(git rev-list $range); do
+    # shellcheck disable=SC2046 # split into $1 $2 $3 on purpose
+    set -- $(git log -1 --format='%G? %ae %ce' "$c")
+    [ "$1" = "G" ] || { echo "pre-push: $c signature status '$1' (need G = good maintainer signature)" >&2; rc=1; }
+    [ "$2" = "$OWNER" ] && [ "$3" = "$OWNER" ] || { echo "pre-push: $c author/committer $2/$3 is not $OWNER" >&2; rc=1; }
+    git log -1 --format=%B "$c" | grep -Eiq -- "$BAD" && { echo "pre-push: $c message breaks the text rule" >&2; rc=1; }
+  done
+  if [ -n "$GL" ]; then
+    "$GL" git --config .gitleaks.toml --redact --no-banner --exit-code 1 --log-opts="$range" . >&2 || { echo "pre-push: gitleaks found a secret in $range" >&2; rc=1; }
+  else
+    echo "pre-push: gitleaks is not installed, secret scan skipped here (CI scans every PR)" >&2
+  fi
+done
+[ "$rc" -eq 0 ] || echo "pre-push: push refused by repository policy." >&2
+exit "$rc"

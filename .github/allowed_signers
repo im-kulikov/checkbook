@@ -1,0 +1,3 @@
+# Public keys allowed to sign commits in this repository (principal namespaces="git" <keytype> <base64> [comment]).
+# The first entry is the maintainer identity that the git hooks and the commit-policy workflow check.
+im@kulikov.im namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDZPqD3Wu6Dgdotkbiu2Qgejox3AAJbot8gInt0rL83W signing

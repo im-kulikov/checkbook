@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Вход по QR</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<div style="flex:1;min-height:0;background:#0B0C0D;position:relative;display:flex;align-items:center;justify-content:center"><a class="ck-icon-btn" href="Welcome.dc.html" aria-label="Закрыть" style="position:absolute;left:8px;top:12px;color:#ECEEEA"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></a><button aria-label="Фонарик" style="position:absolute;display:flex;white-space:nowrap;align-items:center;gap:6px;height:40px;padding:0 14px;border-radius:20px;background:rgba(0,0,0,.45);color:#ECEEEA;border:0;font:500 14px/1 'Golos Text';text-decoration:none;top:12px;right:12px"><svg class="ck-icon ck-icon--s" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg>Фонарик</button><div style="width:200px;height:200px;border-radius:24px;border:3px solid #5CC2A1;box-shadow:0 0 0 2000px rgba(0,0,0,.35);margin-top:-8px"></div><span style="position:absolute;top:68px;left:0;right:0;text-align:center;color:#ECEEEA;font:500 15px/20px 'Golos Text'">Наведите на QR с телефона владельца</span><button style="position:absolute;display:flex;white-space:nowrap;align-items:center;gap:6px;height:40px;padding:0 14px;border-radius:20px;background:rgba(0,0,0,.45);color:#ECEEEA;border:0;font:500 14px/1 'Golos Text';text-decoration:none;bottom:34px;left:50%;transform:translateX(-50%)"><svg class="ck-icon ck-icon--s" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Сфотографировать QR</button></div><div class="ck-sheet" style="flex:none;margin-top:-20px;position:relative;gap:10px"><span class="ck-sheet__handle" aria-hidden="true"></span><div style="display:flex;gap:12px;align-items:center"><span class="ck-avatar ck-avatar--l" aria-hidden="true">С</span><span style="display:flex;flex-direction:column"><strong style="font-size:17px">Вы — Сергей</strong><span style="font-size:13px;color:var(--text-2)">в учёте «Семья Анны»</span></span></div><label class="ck-field"><span class="ck-field__label">Код от Анны</span><span class="ck-field__box"><input class="ck-field__input ck-num" value="482 109 37" placeholder="12 цифр"></span><span class="ck-field__hint">Анна скажет его голосом. Код открывает ключ из QR — по отдельности они бесполезны.</span></label><button class="ck-btn ck-btn--primary ck-btn--block ck-btn--l">Войти</button><button class="ck-btn ck-btn--text" style="padding:0;align-self:flex-start;min-height:32px">Это не я</button><div style="border-top:1px solid var(--divider);padding-top:10px;display:flex;flex-direction:column;gap:6px"><label class="ck-field"><span class="ck-field__label">Вставить приглашение текстом</span><span class="ck-field__box"><input class="ck-field__input ck-num" placeholder="checkbook:1:…"><button class="ck-btn ck-btn--text" style="padding:0;min-height:32px">Вставить</button></span></label></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>

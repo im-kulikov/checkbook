@@ -1,0 +1,15 @@
+node_modules/
+dist*/
+**/public/vendor/
+coverage/
+playwright-report/
+test-results/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+# real receipts never go into this public repo (GIT17): keep the corpus outside or in a private repo
+corpus/
+# real bank PDFs for npm run calibrate:banks stay on a local machine (GIT17)
+fixtures/private/

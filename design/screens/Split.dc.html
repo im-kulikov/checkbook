@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Разделение чека</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<header class="ck-appbar"><a class="ck-icon-btn" href="Review.dc.html" aria-label="Назад"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a><h1 class="ck-appbar__title">Разделить чек</h1></header><div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0"><div style="display:flex;justify-content:space-between;align-items:baseline;padding:0 4px"><span style="font-size:14px;color:var(--text-2)">Стройдвор · 15 окт., 14:30</span><span class="ck-amount ck-amount--m">12 500,00 <span class="ck-amount__cur">₽</span></span></div><div class="ck-split"><span class="ck-split__head"><span>Часть 1</span><button class="ck-icon-btn" aria-label="Удалить часть 1" style="width:32px;height:32px"><svg class="ck-icon ck-icon--s" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></button></span><a class="ck-split__cat" href="Picker.dc.html">Стройка › Электрика<svg class="ck-icon ck-icon--s" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a><label class="ck-field"><span class="ck-sr">Сумма части 1</span><span class="ck-field__box"><input class="ck-field__input ck-num" value="8 000,00"><span style="color:var(--text-2)">₽</span></span></label><label class="ck-field"><span class="ck-sr">Заметка к части 1</span><span class="ck-field__box"><input class="ck-field__input" value="Кабель ВВГ, автоматы" placeholder="Заметка"></span></label></div><div class="ck-split"><span class="ck-split__head"><span>Часть 2</span><span class="ck-tag ck-tag--accent">остаток — подставлен сам</span></span><a class="ck-split__cat" href="Picker.dc.html">Стройка › Отделка<svg class="ck-icon ck-icon--s" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a><label class="ck-field"><span class="ck-sr">Сумма части 2</span><span class="ck-field__box"><input class="ck-field__input ck-num" value="4 500,00"><span style="color:var(--text-2)">₽</span></span></label><label class="ck-field"><span class="ck-sr">Заметка к части 2</span><span class="ck-field__box"><input class="ck-field__input" placeholder="Заметка"></span></label></div><button class="ck-btn ck-btn--secondary ck-btn--block"><svg class="ck-icon ck-icon--s" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Добавить часть</button><span class="ck-remainder ck-remainder--ok"><span>Распределено</span><span class="ck-num">✓ 12 500 из 12 500 ₽</span></span><span class="ck-share ck-share--budget" style=""><i style="width:100%"></i></span></div><div style="padding:12px 16px 20px;flex:none"><a class="ck-btn ck-btn--primary ck-btn--block ck-btn--l" href="Operation.dc.html">Сохранить 2 части</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>

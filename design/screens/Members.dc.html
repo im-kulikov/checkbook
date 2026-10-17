@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Участники</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<header class="ck-appbar"><a class="ck-icon-btn" href="More.dc.html" aria-label="Назад"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a><h1 class="ck-appbar__title">Участники</h1></header><div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;padding-top:4px"><div class="ck-list" style=""><div class="ck-row"><span class="ck-avatar " aria-hidden="true">А</span><span class="ck-row__main"><span class="ck-row__title">Анна</span><span class="ck-row__meta">владелец · этот телефон</span></span></div><a class="ck-row" href="#"><span class="ck-avatar " aria-hidden="true">С</span><span class="ck-row__main"><span class="ck-row__title">Сергей</span><span class="ck-row__meta">ключ до 15.10.2027 · последняя операция сегодня</span></span><svg class="ck-icon ck-icon--s ck-row__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a><a class="ck-row" href="#"><span class="ck-avatar " aria-hidden="true">М</span><span class="ck-row__main"><span class="ck-row__title">Мама</span><span class="ck-row__meta">ключ до 24.10.2026 · 47 операций</span></span><span class="ck-tag ck-tag--draft">истекает через 9 дней</span><svg class="ck-icon ck-icon--s ck-row__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a></div><a class="ck-btn ck-btn--primary ck-btn--block ck-btn--l" href="Invite.dc.html"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Пригласить участника</a><div class="ck-list" style="padding:14px 16px;display:flex;flex-direction:column;gap:10px"><span class="ck-section" style="padding:0">Мама</span><span style="font-size:14px">Ключ «Чекбук — Мама 2026-07-26» истекает 24 октября. Выпустите новый: та же страница GitHub, что в мастере, затем новый QR.</span><button class="ck-btn ck-btn--secondary ck-btn--block"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="M21 2l-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/></svg>Выпустить новый ключ</button><button class="ck-btn ck-btn--danger ck-btn--block">Отозвать доступ</button></div><div class="ck-banner ck-banner--warning"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg><span><span class="ck-banner__title">Отзыв — в два шага</span>1. «Отозвать доступ» здесь. 2. Удалить ключ «Чекбук — Мама 2026-07-26» на GitHub и нажать «Я удалил ключ на GitHub»: приложение само проверить это не может.<br><a class="ck-banner__action" href="#" style="display:inline-block;margin:6px 0 0">Открыть GitHub</a></span></div><button class="ck-btn ck-btn--secondary ck-btn--block">Я удалил ключ на GitHub</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>
