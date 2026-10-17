@@ -1,0 +1,75 @@
+name: commit-policy
+
+# Why pull_request_target: with `pull_request` GitHub runs the workflow file and reads .github/allowed_signers from the
+# PR itself, so a PR could weaken or delete this check. With pull_request_target both come from the BASE branch (main)
+# and only changes merged into main can alter the policy.
+# Rule that keeps it safe: PR code is never checked out or run here. The PR commits are fetched as git objects
+# and read with `git log` / `git rev-list` (data only, no scripts, no hooks, no package install), and the token is read-only.
+# Never add `ref: ${{ github.event.pull_request.head.* }}` to the checkout, never run anything from the PR tree.
+# The text rule comes from the repository secret COMMIT_DENY_PATTERN (an extended regex, case-insensitive);
+# a secret rather than a variable, so its value is masked in the public logs.
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  policy:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: # no `ref:`: the base branch (main), including its .github/allowed_signers
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: PR title, body and branch follow the text rule
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_HEAD: ${{ github.event.pull_request.head.ref }}
+          DENY: ${{ secrets.COMMIT_DENY_PATTERN }}
+        run: |
+          [ -n "$DENY" ] || { echo "::error::repository secret COMMIT_DENY_PATTERN is not set"; exit 1; }
+          if printf '%s\n%s\n%s\n' "$PR_HEAD" "$PR_TITLE" "$PR_BODY" | grep -Eiq -- "$DENY"; then
+            echo "::error::PR branch, title or body breaks the text rule"; exit 1
+          fi
+
+      # GIT06, GIT09: an unsigned or foreign-identity commit turns this step red; the ruleset then blocks the merge.
+      - name: Every commit is authored and signed by the maintainer and follows the text rule
+        env:
+          PR: ${{ github.event.pull_request.number }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+          DENY: ${{ secrets.COMMIT_DENY_PATTERN }}
+        run: |
+          [ -n "$DENY" ] || { echo "::error::repository secret COMMIT_DENY_PATTERN is not set"; exit 1; }
+          test -f .github/allowed_signers || { echo "::error::.github/allowed_signers missing on the base branch"; exit 1; }
+          OWNER="$(awk '!/^[[:space:]]*#/ && NF {print $1; exit}' .github/allowed_signers)"
+          [ -n "$OWNER" ] || { echo "::error::.github/allowed_signers has no entry"; exit 1; }
+          # Objects only: refs/pull/N/head also works for fork PRs. Nothing is checked out.
+          git fetch --no-tags --quiet origin "+refs/pull/$PR/head:refs/remotes/pr/head"
+          [ "$(git rev-parse refs/remotes/pr/head)" = "$HEAD" ] || { echo "::error::PR head moved while the check ran; re-run"; exit 1; }
+          git config gpg.ssh.allowedSignersFile .github/allowed_signers
+          rc=0
+          for c in $(git rev-list "$BASE..$HEAD"); do
+            read -r sig ae ce <<<"$(git log -1 --format='%G? %ae %ce' "$c")"
+            [ "$sig" = G ] || { echo "::error::$c signature status $sig (need G: signed by the key in .github/allowed_signers on main)"; rc=1; }
+            [ "$ae" = "$OWNER" ] && [ "$ce" = "$OWNER" ] || { echo "::error::$c author/committer is not the maintainer"; rc=1; }
+            if git log -1 --format=%B "$c" | grep -Eiq -- "$DENY"; then
+              echo "::error::$c commit message breaks the text rule"; rc=1
+            fi
+          done
+          exit $rc
+
+      - name: GitHub shows every PR commit as Verified
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          bad=$(gh api "repos/$REPO/pulls/$PR/commits" --paginate \
+            --jq '.[] | select(.commit.verification.verified != true) | "\(.sha) \(.commit.verification.reason)"')
+          if [ -n "$bad" ]; then echo "$bad"; echo "::error::unverified commits"; exit 1; fi

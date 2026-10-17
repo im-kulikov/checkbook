@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Проверка распознавания</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<header class="ck-appbar"><a class="ck-icon-btn" href="Inbox.dc.html" aria-label="Закрыть"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></a><h1 class="ck-appbar__title">Проверка</h1><span style="font:500 13px/1 'Golos Text';color:var(--text-2);padding-right:12px">1 из 3</span></header><div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;padding-top:4px"><div class="ck-list" style="display:flex;gap:12px;align-items:center;padding:12px"><span class="ck-thumb" role="img" aria-label="PDF"><span style="width:70%"></span><span></span><span style="width:80%"></span><span class="ck-thumb__badge">PDF</span></span><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px"><span style="font:500 14px/20px 'Golos Text'">Стройдвор.pdf · 184 КБ</span><span style="display:flex;gap:6px"><span class="ck-tag ck-tag--accent">QR ФНС</span><span class="ck-tag">Текст PDF</span></span></div><a class="ck-btn ck-btn--text" href="Operation.dc.html">Открыть</a></div><label class="ck-field"><span class="ck-field__label">Сумма</span><span class="ck-field__box"><input class="ck-field__input ck-num" value="12 500,00 ₽"><span class="ck-conf ck-conf--high"><svg class="ck-icon ck-icon--xs" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>из QR</span></span></label><div style="display:flex;gap:10px"><label class="ck-field" style="flex:1.4;min-width:0"><span class="ck-field__label">Дата</span><span class="ck-field__box"><input class="ck-field__input ck-num" value="15.10.2026"><span class="ck-conf ck-conf--high"><svg class="ck-icon ck-icon--xs" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>QR</span></span></label><label class="ck-field" style="flex:1;min-width:0"><span class="ck-field__label">Время</span><span class="ck-field__box"><input class="ck-field__input ck-num" value="14:30"><span class="ck-conf ck-conf--high"><svg class="ck-icon ck-icon--xs" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>QR</span></span></label></div><label class="ck-field ck-field--medium"><span class="ck-field__label">Получатель</span><span class="ck-field__box"><input class="ck-field__input" value="ООО «Стройдвор»"><span class="ck-conf ck-conf--medium"><svg class="ck-icon ck-icon--xs" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v5M12 17h.01"/></svg>проверьте</span></span><span class="ck-field__hint">ИНН 7700000009 · угадан по прошлым чекам с этой кассы</span></label><div class="ck-seg" role="radiogroup" aria-label="Вид операции"><button class="ck-seg__item" role="radio" aria-checked="true">Трата</button><button class="ck-seg__item" role="radio" aria-checked="false">Возврат</button><button class="ck-seg__item" role="radio" aria-checked="false">Перевод своему</button></div><div style="display:flex;flex-direction:column;gap:8px"><span class="ck-field__label">Категория</span><button class="ck-sug" role="radio" aria-checked="true"><span class="ck-radio" aria-hidden="true"></span><span><span class="ck-sug__title"><span class="ck-path">Стройка<span class="ck-path__sep" aria-hidden="true">›</span>Электрика</span></span><span class="ck-sug__why">по получателю</span></span></button><button class="ck-sug" role="radio" aria-checked="false"><span class="ck-radio" aria-hidden="true"></span><span><span class="ck-sug__title"><span class="ck-path">Стройка<span class="ck-path__sep" aria-hidden="true">›</span>Отделка</span></span><span class="ck-sug__why">последняя</span></span></button><div style="display:flex;justify-content:space-between"><a class="ck-btn ck-btn--text" href="Picker.dc.html" style="padding-left:0">Другая категория…</a><a class="ck-btn ck-btn--text" href="Split.dc.html"><svg class="ck-icon ck-icon--s" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/></svg>Разделить</a></div></div></div><div style="padding:8px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:none;border-top:1px solid var(--divider);background:var(--bg)"><button class="ck-btn ck-btn--primary ck-btn--block ck-btn--l">Сохранить в Стройка › Электрика</button><button class="ck-btn ck-btn--text ck-btn--block">Оставить во «Входящих»</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>

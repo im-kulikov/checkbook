@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "model": "sonnet",
+  "availableModels": [
+    "sonnet",
+    "opus",
+    "haiku"
+  ],
+  "maxEffortLevel": "high",
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
+  "env": {
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
+    "CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS": "1"
+  },
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(~/.ssh/**)",
+      "Edit(/.claude/**)",
+      "Edit(/.githooks/**)",
+      "Edit(/.github/**)",
+      "Edit(/.gitleaks.toml)",
+      "Edit(~/checkbook-dev/scripts/**)",
+      "Edit(~/checkbook-dev/tests/**)",
+      "Edit(~/checkbook-dev/gateway-deploy/**)",
+      "Edit(~/checkbook-dev/env-setup.txt)",
+      "mcp__github__push_files",
+      "mcp__github__create_or_update_file",
+      "mcp__github__delete_file",
+      "mcp__github__create_branch",
+      "mcp__github__fork_repository",
+      "mcp__github__merge_pull_request",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git commit --no-verify *)",
+      "Bash(git commit -n *)",
+      "Bash(git config user.name *)",
+      "Bash(git config user.email *)",
+      "Bash(git config --global user.name *)",
+      "Bash(git config --global user.email *)",
+      "Bash(env)",
+      "Bash(printenv)",
+      "Bash(printenv *)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/checkbook-dev/scripts/session-setup.sh\" 2>&1 || echo 'SETUP NOT DONE: unpack the development archive into ~/checkbook-dev, then run: bash ~/checkbook-dev/scripts/session-setup.sh. Do not commit before it prints cloud-setup: OK.'",
+            "timeout": 300
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard.sh\"",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "includeGitInstructions": false,
+  "includeCoAuthoredBy": false,
+  "disableAllHooks": false
+}

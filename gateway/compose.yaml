@@ -1,0 +1,31 @@
+# Checkbook AI gateway: one container listening on 127.0.0.1:8080 only; put an HTTPS reverse proxy in front of it.
+# Images are published to GHCR by .github/workflows/gateway.yml, tagged with the commit sha.
+# Run: GATEWAY_TAG=<commit sha> docker compose up -d   (with a .env file next to this one, mode 600)
+name: checkbook-gateway
+
+services:
+  gateway:
+    image: ghcr.io/im-kulikov/checkbook-gateway:${GATEWAY_TAG}
+    restart: unless-stopped
+    user: '1000:1000' # the image's node user, not root
+    env_file: .env # PROXYAPI_KEY, GITHUB_REPO, ALLOWED_ORIGIN, ...; never committed, never on phones
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ['no-new-privileges:true']
+    ports:
+      - '127.0.0.1:8080:8080' # only for the reverse proxy on the same host
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:8080/healthz').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    logging: # one line per request (keyId, status, ms); at most 30 MB kept
+      driver: json-file
+      options: { max-size: '10m', max-file: '3' }

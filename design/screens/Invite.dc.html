@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Приглашение участника</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<header class="ck-appbar"><a class="ck-icon-btn" href="Members.dc.html" aria-label="Назад"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a><h1 class="ck-appbar__title">Пригласить участника</h1></header><div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;gap:14px"><div class="ck-steps"><span class="ck-steps__label">Шаг 3 из 3 · Сергей сканирует код</span><span class="ck-steps__bar" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span></div><div class="ck-list" style=""><div class="ck-row"><span style="color:var(--success);display:flex"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span><span class="ck-row__main"><span class="ck-row__title">Имя: Сергей</span><span class="ck-row__meta">так будут подписаны его операции</span></span></div><div class="ck-row"><span style="color:var(--success);display:flex"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span><span class="ck-row__main"><span class="ck-row__title">Ключ выпущен на GitHub</span><span class="ck-row__meta">только checkbook-data · чтение и запись · до 15.10.2027</span></span></div></div><div style="display:flex;flex-direction:column;align-items:center;gap:10px"><div class="ck-qr"><svg class="ck-qr__code" width="168" height="168" viewBox="0 0 200 200" role="img" aria-label="QR-приглашение"><defs><pattern id="qrp" width="24" height="24" patternUnits="userSpaceOnUse"><rect x="0" y="0" width="8" height="8" fill="#15171A"/><rect x="16" y="0" width="8" height="16" fill="#15171A"/><rect x="8" y="8" width="8" height="8" fill="#15171A"/><rect x="0" y="16" width="16" height="8" fill="#15171A"/></pattern></defs><rect width="200" height="200" fill="url(#qrp)"/><rect width="64" height="64" fill="#FFFFFF"/><rect width="56" height="56" fill="#15171A"/><rect x="8" y="8" width="40" height="40" fill="#FFFFFF"/><rect x="16" y="16" width="24" height="24" fill="#15171A"/><rect x="136" width="64" height="64" fill="#FFFFFF"/><rect x="144" width="56" height="56" fill="#15171A"/><rect x="152" y="8" width="40" height="40" fill="#FFFFFF"/><rect x="160" y="16" width="24" height="24" fill="#15171A"/><rect y="136" width="64" height="64" fill="#FFFFFF"/><rect y="144" width="56" height="56" fill="#15171A"/><rect x="8" y="152" width="40" height="40" fill="#FFFFFF"/><rect x="16" y="160" width="24" height="24" fill="#15171A"/></svg><span class="ck-qr__note">Погаснет через 1:48</span></div><button class="ck-btn ck-btn--secondary"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>Поделиться приглашением</button><span style="font-size:13px;color:var(--text-2)">Код для Сергея — скажите голосом, не пересылайте</span><span class="ck-num" style="font:600 26px/32px 'Golos Text';letter-spacing:.06em">482 109 · 375 564</span></div><p style="margin:0;font:400 13px/18px 'Golos Text',sans-serif;color:var(--text-2);">На телефоне Сергея: установить Чекбук на экран «Домой» → «У меня QR-приглашение» → навести камеру → ввести код. QR без кода бесполезен.</p></div><div style="padding:12px 16px 20px;flex:none"><a class="ck-btn ck-btn--primary ck-btn--block ck-btn--l" href="Members.dc.html">Готово</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>

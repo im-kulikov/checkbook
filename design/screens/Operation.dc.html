@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Операция и чек</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<header class="ck-appbar"><a class="ck-icon-btn" href="Category.dc.html" aria-label="Назад"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a><h1 class="ck-appbar__title">Операция</h1><button class="ck-icon-btn" aria-label="Скачать чек"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button></header><div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;gap:10px"><div style="display:flex;gap:14px;align-items:center;padding:0 4px"><span class="ck-thumb" role="img" aria-label="PDF"><span style="width:70%"></span><span></span><span style="width:80%"></span><span class="ck-thumb__badge">PDF</span></span><span style="display:flex;flex-direction:column;gap:2px;flex:1"><span class="ck-amount ck-amount--l">12 500,00 <span class="ck-amount__cur">₽</span></span><a href="Payees.dc.html" style="font:600 16px/22px 'Golos Text';color:var(--accent);text-decoration:none">Стройдвор</a><span style="font-size:13px;color:var(--text-2)">15 октября 2026, 14:30</span></span><a class="ck-btn ck-btn--text" href="#">Открыть PDF</a></div><div class="ck-section" style="padding:4px 4px 0"><span>Разделено на 2 части</span></div><div class="ck-list" style=""><a class="ck-row" href="Category.dc.html"><span class="ck-row__main"><span class="ck-row__title"><span class="ck-path">Стройка<span class="ck-path__sep" aria-hidden="true">›</span>Электрика</span></span><span class="ck-row__meta">Кабель ВВГ, автоматы</span></span><span class="ck-row__end"><span class="ck-row__value ">8 000,00 ₽</span></span></a><a class="ck-row" href="Category.dc.html"><span class="ck-row__main"><span class="ck-row__title"><span class="ck-path">Стройка<span class="ck-path__sep" aria-hidden="true">›</span>Отделка</span></span></span><span class="ck-row__end"><span class="ck-row__value ">4 500,00 ₽</span></span></a></div><div class="ck-list" style=""><div class="ck-row" style="min-height:48px"><span class="ck-row__main"><span class="ck-row__meta">Вид</span></span><span class="ck-row__value" style="font-weight:500;white-space:normal;text-align:right;max-width:220px">Трата</span></div><div class="ck-row" style="min-height:48px"><span class="ck-row__main"><span class="ck-row__meta">Получатель</span></span><span class="ck-row__value" style="font-weight:500;white-space:normal;text-align:right;max-width:220px">ООО «Стройдвор», ИНН 7700000009</span></div><div class="ck-row" style="min-height:48px"><span class="ck-row__main"><span class="ck-row__meta">Распознано</span></span><span class="ck-row__value" style="font-weight:500;white-space:normal;text-align:right;max-width:220px">QR ФНС + текст PDF</span></div><div class="ck-row" style="min-height:48px"><span class="ck-row__main"><span class="ck-row__meta">ФН · ФД · ФП</span></span><span class="ck-row__value" style="font-weight:500;white-space:normal;text-align:right;max-width:220px">7380…6549 · 41250 · 2829…0618</span></div><div class="ck-row" style="min-height:48px"><span class="ck-row__main"><span class="ck-row__meta">Добавила</span></span><span class="ck-row__value" style="font-weight:500;white-space:normal;text-align:right;max-width:220px">Анна, 15 окт. в 14:31</span></div><a class="ck-row" href="#"><span class="ck-row__main"><span class="ck-row__title">История правок</span></span><span class="ck-row__end"><span class="ck-row__value ">2 изменения</span></span><svg class="ck-icon ck-icon--s ck-row__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></a></div></div><div style="padding:12px 16px 20px;display:flex;gap:8px;flex:none;border-top:1px solid var(--divider)"><button class="ck-btn ck-btn--secondary" style="flex:1">Изменить</button><a class="ck-btn ck-btn--secondary" href="Split.dc.html" style="flex:1">Разделить</a><button class="ck-btn ck-btn--danger" style="flex:1">Удалить</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>

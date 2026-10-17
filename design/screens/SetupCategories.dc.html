@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Мастер владельца · категории</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<header class="ck-appbar"><a class="ck-icon-btn" href="SetupKey.dc.html" aria-label="Назад"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a><h1 class="ck-appbar__title">Новый учёт</h1></header><div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;gap:10px"><div class="ck-steps"><span class="ck-steps__label">Шаг 3 из 4 · Категории</span><span class="ck-steps__bar" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div><button class="ck-sug" role="radio" aria-checked="false"><span class="ck-radio" aria-hidden="true"></span><span><span class="ck-sug__title">Семья</span><span class="ck-sug__why">Продукты, Дом, Транспорт, Здоровье…</span></span></button><button class="ck-sug" role="radio" aria-checked="true"><span class="ck-radio" aria-hidden="true"></span><span><span class="ck-sug__title">Семья + Стройка</span><span class="ck-sug__why">то же и Стройка</span></span></button><div style="margin:-4px 0 0 32px;padding:10px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--divider);display:flex;flex-direction:column;gap:2px"><div style="font:400 13px/20px 'Golos Text'"><b style="font-weight:600">Продукты</b></div><div style="font:400 13px/20px 'Golos Text'"><b style="font-weight:600">Дом</b><span style="color:var(--text-2)"> › Ипотека, Коммунальные, Хозтовары, Мелкий ремонт</span></div><div style="font:400 13px/20px 'Golos Text'"><b style="font-weight:600">Транспорт</b><span style="color:var(--text-2)"> › Топливо, Такси, Общественный</span></div><div style="font:400 13px/20px 'Golos Text'"><b style="font-weight:600">Здоровье</b><span style="color:var(--text-2)"> › Аптека, Врачи</span></div><div style="font:400 13px/20px 'Golos Text'"><b style="font-weight:600">Дети</b></div><div style="font:400 13px/20px 'Golos Text'"><b style="font-weight:600">Одежда</b></div><div style="font:400 13px/20px 'Golos Text'"><b style="font-weight:600">Связь и интернет</b></div><div style="font:400 13px/20px 'Golos Text'"><b style="font-weight:600">Развлечения</b></div><div style="font:400 13px/20px 'Golos Text'"><b style="font-weight:600">Подарки</b></div><div style="font:400 13px/20px 'Golos Text'"><b style="font-weight:600">Прочее</b></div><div style="font:400 13px/20px 'Golos Text'"><b style="font-weight:600">Стройка</b><span style="color:var(--text-2)"> › Черновые работы, Отделка, Электрика (Кабель и автоматы, Освещение), Сантехника, Прочее</span></div></div><button class="ck-sug" role="radio" aria-checked="false"><span class="ck-radio" aria-hidden="true"></span><span><span class="ck-sug__title">Пусто</span><span class="ck-sug__why">начнёте с чистого листа</span></span></button></div><div style="padding:8px 16px 18px;flex:none;border-top:1px solid var(--divider);display:flex;flex-direction:column;gap:8px"><p style="margin:0;font:400 13px/18px 'Golos Text',sans-serif;color:var(--text-2);text-align:center">Всё можно поменять позже в Редакторе категорий.</p><a class="ck-btn ck-btn--primary ck-btn--block ck-btn--l" href="AISettings.dc.html">Далее</a></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>

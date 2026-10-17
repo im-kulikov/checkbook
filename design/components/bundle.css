@@ -1,0 +1,216 @@
+@import url("https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap");
+
+/* Чекбук — компоненты. Цвета только из токенов; исключения: бумага чека и QR (всегда светлые). */
+.ck, .ck *, .ck-pair, .ck-pair * { box-sizing: border-box; }
+.ck, .ck-pair { font-family: "Golos Text", system-ui, -apple-system, sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+.ck-num { font-variant-numeric: tabular-nums lining-nums; }
+.ck :focus-visible, .ck-pair :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ck-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Превью: светлая и тёмная тема рядом */
+.ck-pair { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.ck-stage { background: var(--bg); color: var(--text); padding: 16px; border-radius: 12px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; min-width: 0; }
+.ck-stage--stretch { align-items: stretch; }
+.ck-stage__label { font: 500 11px/16px "Golos Text", sans-serif; color: var(--text-2); text-transform: uppercase; letter-spacing: .06em; }
+
+/* Значки: контурные, 24 viewBox, толщина 2 */
+.ck-icon { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.ck-icon--s { width: 16px; height: 16px; }
+.ck-icon--xs { width: 13px; height: 13px; stroke-width: 3; }
+
+/* Button */
+.ck-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid transparent; font: 600 15px/20px "Golos Text", sans-serif; cursor: pointer; text-decoration: none; white-space: nowrap; }
+.ck-btn--l { min-height: 52px; font-size: 16px; padding: 0 20px; }
+.ck-btn--block { width: 100%; }
+.ck-btn--primary { background: var(--accent); color: var(--on-accent); }
+.ck-btn--secondary { background: var(--surface); color: var(--text); border-color: var(--border); }
+.ck-btn--text { background: none; color: var(--accent); padding: 0 8px; }
+.ck-btn--danger { background: var(--surface); color: var(--danger); border-color: var(--border); }
+.ck-btn[disabled], .ck-btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; }
+.ck-icon-btn { width: 44px; height: 44px; border-radius: 12px; border: 0; background: none; color: var(--text); display: inline-grid; place-items: center; padding: 0; cursor: pointer; text-decoration: none; flex: none; }
+
+/* AppBar */
+.ck-appbar { display: flex; align-items: center; gap: 4px; min-height: 56px; padding: 4px 8px; background: var(--bg); width: 100%; }
+.ck-appbar__title { flex: 1; min-width: 0; margin: 0; font: 600 17px/24px "Golos Text", sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ck-appbar__title--root { font-size: 20px; line-height: 28px; padding-left: 8px; }
+
+/* TabBar */
+.ck-tabbar { display: flex; align-items: center; justify-content: space-around; height: 72px; padding: 0 6px; background: var(--surface); border-top: 1px solid var(--divider); width: 100%; }
+.ck-tab { position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 60px; padding: 8px 0; color: var(--text-2); text-decoration: none; font: 500 12px/16px "Golos Text", sans-serif; }
+.ck-tab[aria-current="page"] { color: var(--accent); }
+.ck-tab__badge { position: absolute; top: 2px; right: 8px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--danger); color: var(--on-accent); font: 600 11px/18px "Golos Text", sans-serif; text-align: center; }
+.ck-tab-add { width: 56px; height: 56px; border-radius: 18px; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; text-decoration: none; }
+
+/* Chip */
+.ck-chip { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--divider); background: var(--surface); color: var(--text); font: 500 13px/1 "Golos Text", sans-serif; white-space: nowrap; cursor: pointer; }
+.ck-chip[aria-pressed="true"], .ck-chip--on { background: var(--text); color: var(--bg); border-color: var(--text); }
+.ck-chip--filter { background: var(--accent-weak); border-color: var(--accent-weak); color: var(--text); }
+
+/* Segmented */
+.ck-seg { display: flex; gap: 3px; padding: 3px; border-radius: 12px; background: var(--surface-2); width: 100%; }
+.ck-seg__item { flex: 1; min-height: 38px; border: 1px solid transparent; border-radius: 9px; background: none; color: var(--text-2); font: 500 13px/16px "Golos Text", sans-serif; cursor: pointer; }
+.ck-seg__item[aria-checked="true"] { background: var(--surface); border-color: var(--divider); color: var(--text); font-weight: 600; }
+
+/* Switch */
+.ck-switch { width: 44px; height: 26px; border-radius: 13px; border: 0; padding: 0; background: var(--border); position: relative; cursor: pointer; flex: none; }
+.ck-switch::after { content: ""; position: absolute; left: 3px; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--surface); }
+.ck-switch[aria-checked="true"] { background: var(--accent); }
+.ck-switch[aria-checked="true"]::after { left: 21px; background: var(--on-accent); }
+
+/* TextField и ConfidenceField */
+.ck-field { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+.ck-field__label { font: 500 13px/18px "Golos Text", sans-serif; color: var(--text-2); }
+.ck-field__req { color: var(--danger); }
+.ck-field__box { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); }
+.ck-field__input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; font: 500 16px/24px "Golos Text", sans-serif; color: var(--text); }
+.ck-field__input::placeholder { color: var(--text-2); }
+.ck-field__hint { font: 400 12px/16px "Golos Text", sans-serif; color: var(--text-2); }
+.ck-field--error .ck-field__box { border: 2px solid var(--danger); }
+.ck-field--error .ck-field__hint { color: var(--danger); }
+.ck-field--medium .ck-field__box { border: 2px solid var(--warning); background: var(--warning-weak); }
+.ck-field--low .ck-field__box { border: 2px solid var(--danger); background: var(--danger-weak); }
+.ck-conf { display: inline-flex; align-items: center; gap: 4px; font: 600 12px/16px "Golos Text", sans-serif; white-space: nowrap; }
+.ck-conf--high { color: var(--success); }
+.ck-conf--medium { color: var(--warning); }
+.ck-conf--low { color: var(--danger); }
+.ck-conf--manual { color: var(--text-2); }
+
+/* Списки */
+.ck-list { background: var(--surface); border-radius: 16px; overflow: hidden; width: 100%; }
+.ck-row { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 16px; border: 0; border-top: 1px solid var(--divider); background: none; width: 100%; text-align: left; font: inherit; color: inherit; text-decoration: none; cursor: pointer; }
+.ck-row:first-child { border-top: 0; }
+.ck-row__main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.ck-row__title { font: 500 15px/20px "Golos Text", sans-serif; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ck-row__meta { font: 400 13px/18px "Golos Text", sans-serif; color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ck-row__end { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; flex: none; }
+.ck-row__value { font: 600 15px/20px "Golos Text", sans-serif; font-variant-numeric: tabular-nums lining-nums; white-space: nowrap; }
+.ck-row__sub { font: 400 12px/16px "Golos Text", sans-serif; color: var(--text-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ck-row__chev { color: var(--text-2); }
+.ck-row[aria-busy="true"] .ck-row__value::after { content: " ⧗"; color: var(--warning); }
+.ck-section { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 16px 16px 8px; font: 600 12px/16px "Golos Text", sans-serif; color: var(--text-2); text-transform: uppercase; letter-spacing: .06em; }
+.ck-section__sum { font-variant-numeric: tabular-nums; text-transform: none; letter-spacing: 0; }
+
+/* Суммы */
+.ck-amount { font-weight: 600; font-variant-numeric: tabular-nums lining-nums; white-space: nowrap; }
+.ck-amount--xl { font-size: 36px; line-height: 44px; letter-spacing: -.01em; }
+.ck-amount--l { font-size: 28px; line-height: 36px; }
+.ck-amount--m { font-size: 17px; line-height: 24px; }
+.ck-amount__cur { color: var(--text-2); font-weight: 500; }
+.ck-amount--refund { color: var(--success); }
+.ck-amount--transfer { color: var(--text-2); }
+
+/* Полоса доли и бюджета */
+.ck-share { height: 4px; border-radius: 2px; background: var(--surface-2); overflow: hidden; width: 100%; }
+.ck-share > i { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
+.ck-share--budget { height: 8px; border-radius: 4px; }
+.ck-share--warn > i { background: var(--warning); }
+.ck-share--over > i { background: var(--danger); }
+
+/* Дерево категорий */
+.ck-tree { display: flex; flex-direction: column; gap: 7px; width: 100%; padding: 10px 16px; border: 0; background: none; text-align: left; font: inherit; color: inherit; cursor: pointer; }
+.ck-tree__top { display: flex; align-items: center; gap: 8px; }
+.ck-tree__chev { color: var(--text-2); width: 16px; height: 16px; flex: none; }
+.ck-tree__name { flex: 1; min-width: 0; font: 400 14px/20px "Golos Text", sans-serif; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ck-tree__sum { font: 500 14px/20px "Golos Text", sans-serif; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ck-tree--root .ck-tree__name, .ck-tree--root .ck-tree__sum { font-weight: 600; font-size: 15px; }
+.ck-tree[aria-selected="true"] { background: var(--accent-weak); }
+.ck-tree--archived .ck-tree__name { color: var(--text-2); }
+
+/* Путь категории */
+.ck-path { font: 500 14px/20px "Golos Text", sans-serif; }
+.ck-path__sep { color: var(--text-2); padding: 0 4px; }
+
+/* Теги */
+.ck-tag { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 8px; background: var(--surface-2); color: var(--text-2); font: 600 11px/22px "Golos Text", sans-serif; white-space: nowrap; }
+.ck-tag--draft { background: var(--warning-weak); color: var(--warning); }
+.ck-tag--refund { background: var(--success-weak); color: var(--success); }
+.ck-tag--danger { background: var(--danger-weak); color: var(--danger); }
+.ck-tag--accent { background: var(--accent-weak); color: var(--accent); }
+
+/* Аватар */
+.ck-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--surface-2); color: var(--text); display: inline-grid; place-items: center; font: 600 13px/1 "Golos Text", sans-serif; flex: none; }
+.ck-avatar--s { width: 24px; height: 24px; font-size: 11px; }
+.ck-avatar--l { width: 40px; height: 40px; font-size: 15px; }
+
+/* Баннер */
+.ck-banner { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; background: var(--surface-2); color: var(--text); font: 400 14px/20px "Golos Text", sans-serif; width: 100%; }
+.ck-banner__title { display: block; font-weight: 600; }
+.ck-banner__action { margin-left: auto; color: var(--text); font-weight: 600; text-decoration: underline; white-space: nowrap; background: none; border: 0; font-size: 14px; padding: 0; cursor: pointer; }
+.ck-banner--info { background: var(--accent-weak); }
+.ck-banner--info .ck-icon { color: var(--accent); }
+.ck-banner--warning { background: var(--warning-weak); }
+.ck-banner--warning .ck-icon { color: var(--warning); }
+.ck-banner--error { background: var(--danger-weak); }
+.ck-banner--error .ck-icon { color: var(--danger); }
+
+/* Индикатор синхронизации */
+.ck-sync { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--text-2); font: 500 12px/1 "Golos Text", sans-serif; white-space: nowrap; }
+.ck-sync--ok { background: var(--success-weak); color: var(--success); }
+.ck-sync--queue { background: var(--warning-weak); color: var(--warning); }
+.ck-sync--error { background: var(--danger-weak); color: var(--danger); }
+
+/* Подсказка-радио */
+.ck-sug { display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--divider); background: var(--surface); width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; }
+.ck-sug[aria-checked="true"] { border: 2px solid var(--accent); background: var(--accent-weak); }
+.ck-radio { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); flex: none; }
+.ck-sug[aria-checked="true"] .ck-radio { border: 6px solid var(--accent); }
+.ck-sug__title { display: block; font: 600 15px/20px "Golos Text", sans-serif; }
+.ck-sug__why { display: block; font: 400 12px/16px "Golos Text", sans-serif; color: var(--text-2); }
+
+/* Часть разделённого чека */
+.ck-split { background: var(--surface); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.ck-split__head { display: flex; justify-content: space-between; align-items: center; font: 500 12px/16px "Golos Text", sans-serif; color: var(--text-2); }
+.ck-split__cat { display: flex; align-items: center; justify-content: space-between; min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--divider); background: var(--bg); color: var(--text); text-decoration: none; font: 600 14px/20px "Golos Text", sans-serif; }
+.ck-remainder { display: flex; justify-content: space-between; align-items: center; gap: 8px; font: 500 14px/20px "Golos Text", sans-serif; width: 100%; }
+.ck-remainder--ok { color: var(--success); }
+.ck-remainder--left { color: var(--warning); }
+.ck-remainder--over { color: var(--danger); }
+
+/* Миниатюра чека: бумага всегда светлая */
+.ck-thumb { width: 48px; height: 64px; border-radius: 8px; background: #FFFFFF; border: 1px solid var(--divider); padding: 8px 6px; display: flex; flex-direction: column; gap: 4px; flex: none; position: relative; }
+.ck-thumb > span:not([class]) { height: 3px; border-radius: 2px; background: #D7DAD3; }
+.ck-thumb__qr { margin-top: auto; align-self: center; width: 14px; height: 14px; background: #3D4247; border-radius: 2px; }
+.ck-thumb__badge { position: absolute; right: -6px; bottom: -6px; height: 18px; padding: 0 5px; border-radius: 6px; background: var(--text); color: var(--bg); font: 600 10px/18px "Golos Text", sans-serif; }
+
+/* Плитка действия */
+.ck-tile { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 16px; background: var(--surface); border: 1px solid var(--divider); min-height: 76px; text-decoration: none; color: var(--text); width: 100%; }
+.ck-tile__icon { width: 48px; height: 48px; border-radius: 14px; background: var(--accent-weak); color: var(--accent); display: grid; place-items: center; flex: none; }
+.ck-tile__title { display: block; font: 600 16px/22px "Golos Text", sans-serif; }
+.ck-tile__text { display: block; font: 400 13px/18px "Golos Text", sans-serif; color: var(--text-2); }
+
+/* Шаги мастера */
+.ck-steps { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.ck-steps__label { font: 500 13px/18px "Golos Text", sans-serif; color: var(--text-2); }
+.ck-steps__bar { display: flex; gap: 6px; }
+.ck-steps__bar > i { flex: 1; height: 4px; border-radius: 2px; background: var(--surface-2); }
+.ck-steps__bar > i.on { background: var(--accent); }
+
+/* Пустое состояние */
+.ck-empty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 32px 24px; width: 100%; }
+.ck-empty__icon { width: 56px; height: 56px; border-radius: 18px; background: var(--surface-2); color: var(--text-2); display: grid; place-items: center; }
+.ck-empty__title { font: 600 17px/24px "Golos Text", sans-serif; }
+.ck-empty__text { font: 400 14px/20px "Golos Text", sans-serif; color: var(--text-2); max-width: 280px; }
+
+/* Тост, диалог, лист */
+.ck-toast { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; background: var(--text); color: var(--bg); font: 500 14px/20px "Golos Text", sans-serif; box-shadow: var(--shadow-float); width: 100%; }
+.ck-toast__action { margin-left: auto; color: var(--bg); font-weight: 600; text-decoration: underline; background: none; border: 0; font-size: 14px; padding: 0; cursor: pointer; }
+.ck-dialog { background: var(--surface); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: var(--shadow-float); width: 100%; max-width: 320px; }
+.ck-dialog__title { margin: 0; font: 600 17px/24px "Golos Text", sans-serif; }
+.ck-dialog__text { margin: 0; font: 400 14px/20px "Golos Text", sans-serif; color: var(--text-2); }
+.ck-dialog__actions { display: flex; justify-content: flex-end; gap: 8px; }
+.ck-sheet { background: var(--bg); border-radius: 20px 20px 0 0; padding: 8px 16px 24px; display: flex; flex-direction: column; gap: 12px; box-shadow: var(--shadow-float); width: 100%; }
+.ck-sheet__handle { width: 40px; height: 5px; border-radius: 3px; background: var(--border); align-self: center; }
+.ck-scrim { background: var(--scrim); }
+[data-theme="dark"] .ck-dialog, [data-theme="dark"] .ck-sheet { background: var(--surface-2); border: 1px solid var(--divider); }
+
+/* PIN */
+.ck-pin { display: grid; grid-template-columns: repeat(3, 64px); gap: 12px; }
+.ck-pin__key { width: 64px; height: 64px; border-radius: 50%; border: 0; background: var(--surface-2); color: var(--text); font: 500 24px/1 "Golos Text", sans-serif; cursor: pointer; }
+.ck-pin__dots { display: flex; gap: 12px; }
+.ck-pin__dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--border); }
+.ck-pin__dot.on { background: var(--text); border-color: var(--text); }
+
+/* QR: всегда чёрный на белом, с тихой зоной */
+.ck-qr { background: #FFFFFF; color: #15171A; padding: 16px; border-radius: 20px; display: inline-flex; flex-direction: column; align-items: center; gap: 8px; border: 1px solid var(--divider); }
+.ck-qr__code { display: block; }
+.ck-qr__note { font: 500 12px/16px "Golos Text", sans-serif; color: #5B6168; text-align: center; max-width: 200px; }

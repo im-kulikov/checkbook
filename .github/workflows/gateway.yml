@@ -1,0 +1,85 @@
+name: gateway
+on:
+  push:
+    branches: [main]
+    paths: ['gateway/**', '.github/workflows/gateway.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: gateway
+  cancel-in-progress: false # never cut a deploy in half
+
+# AI gateway: test -> image (GHCR, tag = commit sha) -> deploy over ssh (optional).
+# Runs only from main; no pull_request trigger, so no PR code ever sees the deploy secrets. Environment `vps` requires an
+# approval and allows only main. Actions are pinned by SHA (NFR-S7).
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+      - run: node --test test
+        working-directory: gateway
+
+  image:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      # The package is public (no secrets inside), so the server pulls it without a login.
+      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: gateway
+          push: true
+          tags: ghcr.io/im-kulikov/checkbook-gateway:${{ github.sha }}
+          labels: org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+
+  deploy:
+    needs: image
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: vps
+    permissions: {}
+    steps:
+      # Plain ssh, no third-party action. The only thing sent is the commit sha; the server side decides what to run
+      # with it (a forced command) and validates the format itself.
+      - name: Deploy over ssh
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+          TAG: ${{ github.sha }}
+        run: |
+          # Without deploy secrets in the environment the job skips instead of failing.
+          if [ -z "$VPS_HOST" ] || [ -z "$VPS_SSH_KEY" ]; then
+            echo "::notice::VPS secrets are not set in environment vps yet: deploy skipped"
+            exit 0
+          fi
+          umask 077
+          key="$RUNNER_TEMP/deploy_key"
+          hosts="$RUNNER_TEMP/known_hosts"
+          printf '%s\n' "$VPS_SSH_KEY" >"$key"
+          printf '%s\n' "$VPS_KNOWN_HOSTS" >"$hosts"
+          trap 'rm -f "$key" "$hosts"' EXIT
+          ssh -i "$key" -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=20 \
+            -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$hosts" \
+            -p "${VPS_PORT:-22}" "$VPS_USER@$VPS_HOST" "$TAG"

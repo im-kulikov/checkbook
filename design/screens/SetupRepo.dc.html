@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Мастер владельца · репозиторий</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<header class="ck-appbar"><a class="ck-icon-btn" href="Welcome.dc.html" aria-label="Назад"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a><h1 class="ck-appbar__title">Новый учёт</h1></header><div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0"><div class="ck-steps"><span class="ck-steps__label">Шаг 1 из 4 · Репозиторий</span><span class="ck-steps__bar" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span></div><p style="margin:0;font:400 13px/18px 'Golos Text',sans-serif;color:var(--text-2);font-size:14px;line-height:20px">Данные хранятся в вашем приватном репозитории GitHub — у нас нет сервера.</p><label class="ck-field"><span class="ck-field__label">Логин GitHub</span><span class="ck-field__box"><input class="ck-field__input ck-num" value="anna"></span></label><label class="ck-field"><span class="ck-field__label">Имя репозитория</span><span class="ck-field__box"><input class="ck-field__input ck-num" value="checkbook-data"></span><span class="ck-field__hint">anna/checkbook-data — приватный</span></label><button class="ck-btn ck-btn--secondary ck-btn--block"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>Создать репозиторий на GitHub</button></div><div style="padding:10px 16px 18px;flex:none;border-top:1px solid var(--divider)"><a class="ck-btn ck-btn--primary ck-btn--block ck-btn--l" href="SetupKey.dc.html">Далее</a></div><div class="ck-scrim" style="position:absolute;inset:0"></div><div class="ck-sheet" role="dialog" aria-label="Новый репозиторий на GitHub" style="position:absolute;left:0;right:0;bottom:0"><span class="ck-sheet__handle" aria-hidden="true"></span><div style="display:flex;justify-content:space-between;align-items:center"><strong style="font-size:17px">Новый репозиторий на GitHub</strong><button class="ck-icon-btn" aria-label="Закрыть"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><p style="margin:0;font:400 13px/18px 'Golos Text',sans-serif;color:var(--text-2);">Откроется github.com/new. Проверьте два пункта и нажмите «Create repository».</p><div class="ck-list" style=""><div class="ck-row"><span style="color:var(--success);display:flex"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span><span class="ck-row__main"><span class="ck-row__title">Private</span><span class="ck-row__meta">видите только вы и приглашённые</span></span></div><div class="ck-row"><span style="color:var(--success);display:flex"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span><span class="ck-row__main"><span class="ck-row__title">Add a README file</span><span class="ck-row__meta">иначе репозиторий пустой и не откроется</span></span></div></div><button class="ck-btn ck-btn--primary ck-btn--block ck-btn--l"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>Открыть GitHub</button></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>

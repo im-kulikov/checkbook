@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Настройки ИИ</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<header class="ck-appbar"><a class="ck-icon-btn" href="Settings.dc.html" aria-label="Назад"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a><h1 class="ck-appbar__title">ИИ-распознавание</h1></header><div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;padding-top:4px"><div class="ck-list" style=""><div class="ck-row"><span class="ck-row__main"><span class="ck-row__title">Распознавание с ИИ</span><span class="ck-row__meta">Кнопка «Уточнить с ИИ» в Проверке, когда своих сил не хватило</span></span><button class="ck-switch" role="switch" aria-checked="true" aria-label="Распознавание с ИИ"></button></div></div><div class="ck-list" style=""><div class="ck-row"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></svg><span class="ck-row__main"><span class="ck-row__title">Шлюз: ai.example.ru · отвечает</span></span></div></div><p style="margin:0;font:400 13px/18px 'Golos Text',sans-serif;color:var(--text-2);padding:0 4px">Адрес задаёт владелец при сборке приложения</p><div style="display:flex;gap:10px;align-items:center"><button class="ck-btn ck-btn--secondary">Проверить</button><span class="ck-sync ck-sync--ok"><svg class="ck-icon ck-icon--xs" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Шлюз отвечает · 1,2 с</span></div><div class="ck-section" style="padding:4px 4px 0"><span>Что уходит в шлюз</span></div><div class="ck-list" style=""><div class="ck-row"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span class="ck-row__main"><span class="ck-row__title">Снимок или текст чека</span><span class="ck-row__meta">только тот, для которого нажали кнопку</span></span></div><div class="ck-row"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="M21 2l-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/></svg><span class="ck-row__main"><span class="ck-row__title">Ваш ключ GitHub</span><span class="ck-row__meta">шлюз лишь проверяет, что он открывает checkbook-data</span></span></div><div class="ck-row"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></svg><span class="ck-row__main"><span class="ck-row__title">Обратно — поля чека</span><span class="ck-row__meta">с цитатами из текста; вы проверяете их как обычно</span></span></div></div><div class="ck-banner ck-banner--info"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span><span class="ck-banner__title">Ключа ИИ нет ни на телефоне, ни в коде</span>Модель и лимит заданы в шлюзе. Адрес шлюза зашит в сборку приложения.</span></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>

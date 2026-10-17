@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Ручной ввод</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ck-tokens.css">
+<link rel="stylesheet" href="ds/checkbook/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}[data-lm="d"]{display:none}[data-theme="dark"] [data-lm="l"]{display:none}[data-theme="dark"] [data-lm="d"]{display:inline-block}</style>
+</helmet>
+<div data-theme="{{theme}}" class="ck" style="width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<header class="ck-appbar"><a class="ck-icon-btn" href="Main.dc.html" aria-label="Закрыть"><svg class="ck-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></a><h1 class="ck-appbar__title">Вручную</h1></header><div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0"><label class="ck-field"><span class="ck-field__label">Сумма <span class="ck-field__req" aria-hidden="true">*</span></span><span class="ck-field__box"><input class="ck-field__input ck-num" value="50 000"><span style="color:var(--text-2);font-weight:600">₽</span></span><span class="ck-field__hint">Можно посчитать прямо здесь: 1200+350</span></label><div style="display:flex;gap:6px;margin-top:-4px"><button class="ck-chip">+</button><button class="ck-chip">−</button></div><div class="ck-seg" role="radiogroup" aria-label="Вид операции"><button class="ck-seg__item" role="radio" aria-checked="true">Трата</button><button class="ck-seg__item" role="radio" aria-checked="false">Возврат</button><button class="ck-seg__item" role="radio" aria-checked="false">Перевод своему</button></div><div style="display:flex;flex-direction:column;gap:6px"><span class="ck-field__label">Дата <span class="ck-field__req" aria-hidden="true">*</span></span><div style="display:flex;gap:6px;align-items:center"><button class="ck-chip">Сегодня</button><button class="ck-chip" aria-pressed="true">Вчера</button><button class="ck-chip">Другая…</button><span class="ck-num" style="margin-left:auto;font:500 14px/1 'Golos Text';color:var(--text-2)">14.10.2026</span></div></div><div style="display:flex;gap:8px;align-items:flex-start"><label class="ck-field ck-field--error" style="flex:1;min-width:0"><span class="ck-field__label">Время <span class="ck-field__req" aria-hidden="true">*</span></span><span class="ck-field__box"><input class="ck-field__input ck-num" placeholder="чч:мм"></span><span class="ck-field__hint">Укажите время или «Не помню»</span></label><div style="margin-top:30px;flex:none"><button class="ck-chip">Не помню</button></div></div><div style="display:flex;flex-direction:column;gap:6px"><label class="ck-field"><span class="ck-field__label">Получатель <span class="ck-field__req" aria-hidden="true">*</span></span><span class="ck-field__box"><input class="ck-field__input" value="бригада"></span></label><div class="ck-list" style="border:1px solid var(--divider)"><button class="ck-row"><span class="ck-avatar ck-avatar--s" aria-hidden="true">Б</span><span class="ck-row__main"><span class="ck-row__title"><b>Бригада</b> Петрова</span><span class="ck-row__meta">6 операций · Стройка › Отделка</span></span></button><button class="ck-row"><span class="ck-avatar ck-avatar--s" aria-hidden="true">С</span><span class="ck-row__main"><span class="ck-row__title">Стройдвор</span><span class="ck-row__meta">23 операции</span></span></button></div></div><div style="display:flex;flex-direction:column;gap:6px"><span class="ck-field__label">Категория <span class="ck-field__req" aria-hidden="true">*</span></span><a class="ck-sug" role="radio" aria-checked="true" href="Picker.dc.html" style="text-decoration:none"><span class="ck-radio" aria-hidden="true"></span><span><span class="ck-sug__title"><span class="ck-path">Стройка<span class="ck-path__sep" aria-hidden="true">›</span>Отделка</span></span><span class="ck-sug__why">по получателю</span></span></a></div></div><div style="padding:10px 16px 16px;flex:none;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--divider)"><button class="ck-btn ck-btn--primary ck-btn--block ck-btn--l">Сохранить</button><p style="margin:0;font:400 13px/18px 'Golos Text',sans-serif;color:var(--text-2);text-align:center"><span style="color:var(--danger)">*</span> — обязательные поля: сумма, дата, время, получатель</p></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { theme: this.props.theme ?? 'light' }; }
+}
+</script>
+</body>
+</html>
